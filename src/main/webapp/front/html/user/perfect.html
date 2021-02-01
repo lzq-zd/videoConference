@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>完善用户信息</title>
+    <link rel="stylesheet" href="/front/css/reset.css">
+    <link rel="stylesheet" href="/front/css/user/perfect.css">
+    <link rel="shortcut icon" type="images/x-icon"  href="/front/img/user/perfect.png" />
+    <!--弹出框-->
+    <link rel="stylesheet" type="text/css" href="/static/dialogBox/css/xcConfirm.css"/>
+</head>
+<body>
+     <div class="max-box">
+         <h2>个人信息修改</h2>
+         <div class="detail-box">
+             <!--上传头像模块-->
+             <div class="headPhoto">
+                 <h3>修改头像</h3>
+                 <img class="photo" id="headPhoto" src="/user/getHeadPhoto" onerror="this.src='/front/img/mainPage/head.png'" alt="你的头像">
+                 <input type="file" name="imgName" id="inputFile" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onchange="imgPreview(this)">
+                 <button class="submit" onclick="updateHeadPhoto()">保存修改</button>
+             </div>
+             <div class="right-box">
+                 <h3>修改个人签名/邮箱</h3>
+                 <!--个人签名-->
+                 <div class="intro">
+                     <textarea id="addComment" placeholder="添加你的简介/个人签名"></textarea>
+                     <button class="submit" onclick="submitIntro()">提交简介</button>
+                 </div>
+                 <!--修改个人邮箱-->
+                 <div class="email-box">
+                     <div class="item">
+                         <span>旧邮箱</span>
+                         <input type="text" id="oldEmail">
+                     </div>
+                     <div class="item">
+                         <span>新邮箱</span>
+                         <input type="text" id="newEmail" placeholder="请输入新的邮箱" onblur="judgeEmail()">
+                     </div>
+                     <div class="ajax">
+                         <span id="newEmailInfo"></span>
+                     </div>
+                     <div class="code">
+                         <span>验证码</span>
+                         <input type="text" placeholder="请输入验证码" id="code" onblur="judgeCode()">
+                         <button class="codeButton" onclick="emailCode()" id="codeButton">点击发送</button>
+                     </div>
+                     <div class="ajax">
+                         <span id="codeInfo"></span>
+                     </div>
+                     <button class="submit" type="button" onclick="updateEmail()">更换邮箱</button>
+                 </div>
+             </div>
+
+         </div>
+         <button class="returnUpdate" id="returnUpdate" onclick="returnUpdate()">完成修改 点击返回上级页面</button>
+     </div>
+
+     <!-- 要使用jQuery，需要导入-->
+     <script src="/static/jquery-3.5.1.js"></script>
+     <script src="/static/dialogBox/js/xcConfirm.js"></script>
+     <script src="/front/js/user/perfect.js"></script>
+</body>
+</html>

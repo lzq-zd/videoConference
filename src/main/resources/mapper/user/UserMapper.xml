@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lzq.dao.user.UserDao">
+    <select id="getUserPassNameOrEmailAndPassword" resultType="com.lzq.bean.user.User">
+        select * from user
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null">
+                and name = #{name}
+            </if>
+            <if test="email != null">
+                and email = #{email}
+            </if>
+            <if test="password != null">
+                and password = #{password}
+            </if>
+        </where>
+    </select>
+
+    <insert id="userRegister" useGeneratedKeys="true"
+            keyProperty="user.id"  keyColumn="id" parameterType="com.lzq.bean.user.User">
+          insert into user(name,email,password) values(#{user.name},#{user.email},#{user.password})
+      </insert>
+
+    <update id="updateUserMsg">
+        update user
+        <set>
+            <if test="email != null">email = #{email},</if>
+            <if test="headPortrait != null">headPortrait = #{headPortrait},</if>
+            <if test="intro != null">intro = #{intro},</if>
+        </set>
+        where id=#{id}
+    </update>
+</mapper>

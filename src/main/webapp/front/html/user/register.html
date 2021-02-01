@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" href="/front/css/reset.css">
+    <link rel="stylesheet" href="/front/css/user/userRegister.css">
+    <link rel="shortcut icon" type="images/x-icon"  href="/front/img/user/register.png" />
+    <!--弹出框-->
+    <link rel="stylesheet" type="text/css" href="/static/dialogBox/css/xcConfirm.css"/>
+</head>
+<body>
+<div id="register-box">
+    <h1>注册</h1>
+    <div class="form">
+        <!--用户名-->
+        <div class="item">
+            <span class="iconfont">&#xe623;</span>
+            <input type="text" placeholder="用户名(中/英文/数字/_/- 2-12位)" id="userName" onblur="registerUserName()">
+        </div>
+        <div class="ajax">
+            <span id="userNameInfo"></span>
+        </div>
+        <!--邮箱-->
+        <div class="item">
+            <span class="iconfont">&#xe645;</span>
+            <input type="text" placeholder="邮箱（支持QQ、网易等邮箱）" id="email" onblur="registerEmail()">
+        </div>
+        <div class="ajax">
+            <span id="emailInfo"></span>
+        </div>
+        <!--密码-->
+        <div class="item">
+            <span class="iconfont">&#xe64c;</span>
+            <input type="password" placeholder="密码（英文/数字/_/- 6-18位）" id="password" onblur="registerPassword()">
+        </div>
+        <div class="ajax">
+            <span id="passwordInfo"></span>
+        </div>
+        <!--邮箱验证码-->
+        <div class="code">
+            <span class="iconfont">&#xe624;</span>
+            <input type="text" placeholder="请输入邮箱收到的验证码" id="registerCode" onblur="registerCode()">
+            <button class="codeButton" onclick="emailCode()" id="codeButton">点击发送</button>
+        </div>
+        <div class="ajax">
+            <span id="codeInfo"></span>
+        </div>
+
+        <!--登录注册-->
+        <button class="registerButton" type="button" onclick="registerButton()">注册</button>
+        <div class="checkbox">
+            <a href="/user/login" class="checkbox-login">
+                已经注册？点击登录
+            </a>
+        </div>
+    </div>
+
+    <!--要使用jQuery，需要导入-->
+    <script src="/static/jquery-3.5.1.js"></script>
+    <script src="/front/js/user/register.js"></script>
+    <script src="/static/dialogBox/js/xcConfirm.js"></script>
+</div>
+</body>
+</html>

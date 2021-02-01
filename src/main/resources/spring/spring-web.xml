@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+    <!-- 配置SpringMVC -->
+    <!-- 1.开启SpringMVC注解模式 -->
+    <mvc:annotation-driven />
+
+    <mvc:default-servlet-handler />
+
+    <!-- 3.扫描web相关的bean -->
+    <context:component-scan base-package="com.lzq.controller,com.lzq.util"/>
+
+
+    <!--视图处理器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--配置jsp的视图解析类-->
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <!-- 前缀 -->
+        <property name="prefix" value="/front/html/"/>
+        <!-- 后缀 -->
+        <property name="suffix" value=".html"/>
+    </bean>
+
+
+    <!--文件上传配置-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--限制文件上传大小，最大值为2G-->
+        <property name="maxUploadSize" value="2147483648"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+</beans>

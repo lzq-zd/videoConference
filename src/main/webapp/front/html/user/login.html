@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="/front/css/reset.css">
+    <link rel="stylesheet" href="/front/css/user/userLogin.css">
+    <link rel="shortcut icon" type="images/x-icon"  href="/front/img/user/login.png" />
+    <!--弹出框-->
+    <link rel="stylesheet" type="text/css" href="/static/dialogBox/css/xcConfirm.css"/>
+</head>
+<body>
+     <div id="login-box">
+         <h1>登录</h1>
+         <div class="form">
+             <!--邮箱或者用户名登录-->
+             <div class="item">
+                 <span class="iconfont">&#xe623;</span>
+                 <input type="text" placeholder="用户名/邮箱" id="userName" onblur="loginUserName()">
+             </div>
+             <div class="ajax">
+                 <span id="userNameInfo"></span>
+             </div>
+             <!--密码-->
+             <div class="item">
+                 <span class="iconfont">&#xe64c;</span>
+                 <input type="password" placeholder="密码" id="password" onblur="loginPassword()">
+             </div>
+             <div class="ajax">
+                 <span id="passwordInfo"></span>
+             </div>
+             <!--验证码-->
+             <div class="code">
+                 <span class="iconfont">&#xe624;</span>
+                 <input type="text" placeholder="验证码" id="loginCode" onblur="loginCode()">
+                 <img id="verifyCodeImage" src="/getVerifyCode" alt="点击刷新验证码" onclick="lCode()">
+             </div>
+             <div class="ajax">
+                 <span id="codeInfo"></span>
+             </div>
+             <!--记住我、忘记密码-->
+             <div class="checkbox">
+                 <label class="checkbox-label">
+                     <input type="checkbox" id="rememberMe" name="rememberMe">
+                     记住我
+                 </label>
+                 <a href="/user/forgetPassword" class="checkbox-a">
+                     忘记密码
+                 </a>
+             </div>
+             <!--登录注册-->
+             <button type="button" onclick="loginButton()">登录</button>
+             <div class="register">
+                 <a href="/user/register" class="checkbox-register">
+                     还未注册？点击注册
+                 </a>
+             </div>
+         </div>
+     </div>
+
+     <!-- 要使用jQuery，需要导入-->
+     <script src="/static/jquery-3.5.1.js"></script>
+     <script src="/static/dialogBox/js/xcConfirm.js"></script>
+     <script src="/front/js/user/login.js"></script>
+</body>
+</html>

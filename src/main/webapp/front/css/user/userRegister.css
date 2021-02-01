@@ -1,0 +1,106 @@
+body {
+    background: url("/front/img/user/background.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+#register-box {
+    width: 30%;
+    height: auto;
+    border: 1px solid #000;
+    margin: 0 auto;
+    margin-top: 10%;
+    text-align: center;
+    background: #00000060;
+    padding: 20px 50px;
+    border-radius: 25px;
+}
+
+#register-box h1{
+    color: white;
+}
+
+#register-box .form .item {
+    margin-top: 15px;
+}
+
+#register-box .form .code {
+    margin-top: 15px;
+}
+
+#register-box .form .ajax {
+    margin-top: 1px;
+}
+
+#register-box .form .ajax span{
+    font-size: 10px;
+}
+
+#register-box .form .code span{
+    font-size: 18px;
+    color: #ffffff;
+}
+
+#register-box .form .item span{
+    font-size: 18px;
+    color: #ffffff;
+}
+
+#register-box .form .item input {
+    width: 300px;
+    font-size: 18px;
+    border: 0;
+    border-bottom: 2px solid #fff;
+    padding: 5px 10px;
+    background: #ffffff00;
+    color: #ffffff;
+    outline:none;
+}
+
+#register-box .form .code input {
+    width: 200px;
+    font-size: 18px;
+    border: 0;
+    border-bottom: 2px solid #fff;
+    padding: 5px 10px;
+    background: #ffffff00;
+    color: #ffffff;
+    outline:none;  /*去掉选中时候的轮廓*/
+    margin-right: 8px;
+}
+
+#register-box .form .code .codeButton {
+    width: 85px;
+    height: 30px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: green;
+    color: #ffffff;
+    border: 0;
+    outline:none;
+    position: relative;
+}
+
+#register-box .registerButton {
+    margin-top: 20px;
+    width: 300px;
+    height: 30px;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #ffffff;
+    background-image: linear-gradient(to right,#ad3125 0%,#578bc3 100%);
+    border: 0;
+    border-radius: 15px;
+    outline:none;
+}
+
+.checkbox {
+    padding-top: 15px;
+}
+
+.checkbox a {
+    color: white;
+    font-weight: 700;
+}

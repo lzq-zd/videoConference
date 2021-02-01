@@ -1,0 +1,149 @@
+body {
+    background: #e3e4e5;
+}
+
+.max-box {
+    width: 60%;
+    margin: 3% auto;
+    text-align: center;
+    position: relative;
+}
+
+.max-box .detail-box {
+    width: 100%;
+    margin: 3% auto;
+    text-align: center;
+    position: relative;
+    display: flex;
+}
+
+
+.max-box h1{
+    color: white;
+}
+
+.max-box .detail-box .item {
+    margin-top: 15px;
+}
+
+.max-box .detail-box .ajax {
+    margin-top: 1px;
+}
+
+.max-box .detail-box .ajax span{
+    font-size: 10px;
+}
+
+.max-box .detail-box .item span{
+    font-size: 18px;
+    color: #000000;
+}
+
+.max-box .detail-box  .code span{
+    font-size: 18px;
+    color: #000000;
+}
+.max-box .detail-box .headPhoto {
+    width: 50%;
+    height: 0;
+    margin: 3% auto;
+    text-align: center;
+    position: relative;
+}
+
+.max-box .detail-box .headPhoto #headPhoto{
+    position: relative;
+    width: 100%;
+    height: 400px;
+    border-radius:50%;
+}
+
+.max-box .detail-box .right-box {
+    width: 40%;
+    margin: 3% auto;
+    text-align: center;
+    position: relative;
+}
+
+.max-box .detail-box .intro #addComment{
+    width: 100%;
+    height: 200px;
+}
+
+.max-box .detail-box .email-box {
+    margin-top: 20px;
+}
+
+.max-box .detail-box .email-box .codeButton {
+    width: 30%;
+    height: 30px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: green;
+    color: #ffffff;
+    border: 0;
+    outline:none;
+    position: relative;
+}
+
+.max-box .detail-box .item {
+    width: 100%;
+}
+
+.max-box .detail-box .code {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.max-box .detail-box .item input {
+    width: 70%;
+    font-size: 18px;
+    border: 0;
+    border-bottom: 2px solid #fff;
+    padding: 5px 10px;
+    background: #ffffff00;
+    color: #000000;
+    outline:none;  /*去掉选中时候的轮廓*/
+}
+
+.max-box .detail-box .code input {
+    width: 35%;
+    font-size: 18px;
+    border: 0;
+    border-bottom: 2px solid #fff;
+    padding: 5px 10px;
+    background: #ffffff00;
+    color: #000000;
+    outline:none;  /*去掉选中时候的轮廓*/
+    margin-right: 5%;
+}
+
+.max-box .detail-box .submit {
+    margin-top: 20px;
+    width: 180px;
+    height: 30px;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #ffffff;
+    background-image: linear-gradient(to right,#ad3125 0%,#578bc3 100%);
+    border: 0;
+    border-radius: 15px;
+    outline:none;
+}
+
+.max-box .returnUpdate {
+    width: 70%;
+    margin-top: 20px;
+    height: 30px;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #ffffff;
+    background-image: linear-gradient(to right,#ad3125 0%,#578bc3 100%);
+    border: 0;
+    border-radius: 15px;
+    outline:none;
+}
+
