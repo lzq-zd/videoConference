@@ -1,0 +1,105 @@
+/* 解决页面级的  */
+/* ------------------ 设置导航栏 -------------------------------*/
+/* 灰色背景 8*/
+.navigation {
+    height: 50px;
+    background: #e3e4e5;
+    border-bottom: 1px solid #ddd;
+    background-size: cover;
+}
+
+/* 一定宽度居中,靠右边*/
+.navigation-box {
+    margin: 0 auto;
+    width: 80%;
+    text-align: right;
+}
+
+
+/* 设置为横着排布 */
+.navigation-box ul li {
+    display: inline-block; /*横着排列*/
+    padding: 0 10px;
+    font-size: 15px;
+    height: 50px;
+    line-height: 50px;
+    position: relative;
+}
+
+/* 设置链接字体去掉下边线，字体颜色 */
+.navigation-box ul li a {
+    color: #000000;
+    text-decoration: none;
+}
+
+
+.navigation-box ul li .welcome {
+    color: #e1251b;
+}
+
+
+/* 鼠标移动到标签上面标签变红色*/
+.navigation-box ul li a:hover {
+    color: #f10215;
+}
+
+
+/* ------------------ 设置标题 -------------------------------*/
+/* logo和标题*/
+.header-box .header .logo-box {
+    margin: 2% auto;
+    width: 80%;
+    text-align: center;
+}
+
+.logo-box a {
+    color: #000000;
+    font-size: 48px;
+}
+
+.logo-box a span {
+    font-size: 48px;
+    color: #000000;
+}
+
+/* 设置两个大的按钮 */
+.meeting {
+    margin: 5% auto;
+    width: 80%;
+    text-align: center;
+}
+
+.meeting .createAndAdd {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.meeting .createAndAdd .create {
+    margin-top: 20px;
+    width: 45%;
+    height: 300px;
+    font-size: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #ffffff;
+    background-image: linear-gradient(to right,#ad3125 0%,#578bc3 100%);
+    border: 0;
+    border-radius: 15px;
+    outline:none;
+}
+
+.meeting .createAndAdd .add {
+    margin-left: 8%;
+    margin-top: 20px;
+    width: 45%;
+    height: 300px;
+    font-size: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #ffffff;
+    background-image: linear-gradient(to right,#ad3125 0%,#578bc3 100%);
+    border: 0;
+    border-radius: 15px;
+    outline:none;
+}
+

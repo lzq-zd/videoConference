@@ -1,0 +1,13 @@
+/* 解决一些公共的样式 */
+body {
+    font-size: 14px;
+    background: #f4f4f4;
+}
+
+/* 清浮动*/
+.clearfix:after {
+    content: "";
+    clear: both;
+    display: block;
+    height: 0px;
+}
