@@ -17,7 +17,7 @@ public class UserCRUDTest extends BaseTest {
     @Autowired
     private UserService userService;
 
-    //@Test
+    @Test
     //添加新用户
     public void createUser() {
         User user = new User();
@@ -28,14 +28,14 @@ public class UserCRUDTest extends BaseTest {
     }
     //✓
 
-    //@Test
+    //@DataBaseTest
     //修改用户信息 --- 修改用户密码
     public void updatePasswordUser() {
         userService.updateUserPassword("lzq@qq.com","436280");
     }
     //✓
 
-    //@Test
+    //@DataBaseTest
     //修改用户信息 --- 修改用户信息，邮箱修改、头像修改、简介修改
     public void updateUserMsg() {
         //userService.updateUserMsg(15,"lzq-zd@qq.com","/c/lzq","无奇不有");
@@ -43,7 +43,7 @@ public class UserCRUDTest extends BaseTest {
     }
     //✓
 
-    //@Test
+    //@DataBaseTest
     //查询用户信息
     public void readUser() {
         User user = userService.getUserPassNameOrEmailAndPassword(null, "test", null, null);
