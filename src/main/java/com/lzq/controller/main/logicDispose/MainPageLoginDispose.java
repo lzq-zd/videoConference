@@ -23,11 +23,11 @@ import java.util.Map;
  */
 @RequestMapping(value = "/mainPageLogin")
 @Controller
-public class mainPageLoginDispose {
+public class MainPageLoginDispose {
     @Autowired
     private UserService userService;
 
-    private static final Logger logger = LogManager.getLogger(mainPageLoginDispose.class);
+    private static final Logger logger = LogManager.getLogger(MainPageLoginDispose.class);
 
     //cookie 登录判断
     @RequestMapping(value = "/getUserLoginCookie")
@@ -51,6 +51,9 @@ public class mainPageLoginDispose {
             logger.info("cookie获取失败");
             //cookie不存在，那么看看刚刚用户是否登录
             user = (User)(session.getAttribute("user"));
+        }else {
+            logger.info("cookie获取成功");
+            session.setAttribute("user",user);
         }
         String msg = "还未登录？点击登录/注册";
         boolean flag = false;

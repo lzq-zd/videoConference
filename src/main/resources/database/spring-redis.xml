@@ -24,7 +24,7 @@
     <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
           p:hostName="${redis.host}"
           p:port="${redis.port}"
-          p:password=""
+          p:password="${redis.pass}"
           p:pool-config-ref="jedisPoolConfig"
           p:timeout="100000"/>
 

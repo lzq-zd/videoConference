@@ -20,50 +20,74 @@ $(document).ready(function(){
     });
 });
 
-/*显示用户头像*/
-$(function () {
-    /*用户未登录，不做处理，显示默认图像*/
+
+/*创建会议*/
+function createMeeting() {
     if(!loginFlag) {
-        return;
+        /*未登录的话，提示登录*/
+        window.wxc.xcConfirm("请先登录！",window.wxc.xcConfirm.typeEnum.info);
+        return
     }
-    $.getJSON({
-        url:'/user/getHeadPhoto',
-        success:function (data) {
-
+    var txt=  "请输入会议备注信息";
+    window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.input,{
+        onOk:function(remark){
+            if(remark === null || remark.length < 1) {
+                window.wxc.xcConfirm('必须输会议备注信息，以方便通知参会人员',window.wxc.xcConfirm.typeEnum.error);
+                return;
+            }
+            $.post( {
+                url:'/meeting/createRoom',
+                data:{
+                    "remark":remark
+                },
+                success:function (data) {
+                    var msg = data["msg"];
+                    var flag = data["flag"];
+                    if(flag) {
+                        var meeting = msg;
+                        var url = meeting.url;
+                        var presider = meeting.presider;
+                        var remark = meeting.remark;
+                        var dateTime = meeting.dateTime;
+                        window.wxc.xcConfirm("创建成功 \n网站地址："+url+"\n主持者："+presider+"\n备注："+remark+"\n创建时间："+dateTime,window.wxc.xcConfirm.typeEnum.success);
+                    }else {
+                        window.wxc.xcConfirm(msg,window.wxc.xcConfirm.typeEnum.error);
+                    }
+                }
+            });
         }
-    })
-});
-
-//写博客事件
-function writeBlog() {
-    if(loginFlag) {
-        //打开一个新的页面
-        window.open('/blog/redact');
-    }else {
-        window.wxc.xcConfirm("请先登录！",window.wxc.xcConfirm.typeEnum.info);
-    }
+    });
 }
 
-function addMusic() {
-    if(loginFlag) {
-        window.location.href = '#';
-    }else {
+/*加入会议*/
+function addMeeting() {
+    if(!loginFlag) {
+        /*未登录的话，提示登录*/
         window.wxc.xcConfirm("请先登录！",window.wxc.xcConfirm.typeEnum.info);
+        return
     }
-}
-
-function addVideo() {
-    if(loginFlag) {
-        window.location.href = '#';
-    }else {
-        window.wxc.xcConfirm("请先登录！",window.wxc.xcConfirm.typeEnum.info);
-    }
-}
-
-function addPhoto() {
-    if(loginFlag) {
-        window.location.href = '#';
-    }else {
-        window.wxc.xcConfirm("请先登录！",window.wxc.xcConfirm.typeEnum.info);
-    }
+    var txt=  "请输入房间号";
+    window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.input,{
+        onOk:function(roomId){
+            if(roomId === null || roomId.length < 10) {
+                window.wxc.xcConfirm('必须输入正确格式的房间号，否则无法加入',window.wxc.xcConfirm.typeEnum.error);
+                return;
+            }
+            $.post( {
+                url:'/meeting/addRoom',
+                data:{
+                    "roomId":roomId
+                },
+                success:function (data) {
+                    var msg = data["msg"];
+                    var flag = data["flag"];
+                    if(flag) {
+                        window.wxc.xcConfirm(msg,window.wxc.xcConfirm.typeEnum.success);
+                    }else {
+                        window.wxc.xcConfirm(msg,window.wxc.xcConfirm.typeEnum.error);
+                    }
+                }
+            });
+        }
+    });
 }

@@ -61,7 +61,7 @@ public class EmailUtil {
         email.setSubject("用户忘记密码");//主题名称
         email.setCharset("UTF-8");//设置字符集编码
 
-        email.setFrom("lzq_zd@163.com", "生活学习网");//发送方邮箱、发送方名称
+        email.setFrom("lzq_zd@163.com", "WebRTC视频会议网");//发送方邮箱、发送方名称
         String str = "你的验证码为 " + x + ",请在10分钟内使用！";
         email.setMsg(String.valueOf(str));//发送内容
         email.addTo(String.valueOf(uemail));//接收方邮箱
