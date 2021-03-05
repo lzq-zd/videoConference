@@ -12,8 +12,8 @@
         </console>
 
         <!-- fileName：输出路径  filePattern：命名规则 -->
-        <RollingFile name="RollingFileInfo" fileName="F:/videoConference/logs/log.log"
-                     filePattern="F:/liveAndStudyLog/logs/$${date:yyyy-MM-dd}/allOut-%d{yyyy-MM-dd}-%i.log.gz">
+        <RollingFile name="RollingFileInfo" fileName="/home/ubuntu/videoConference/logs/log.log"
+                     filePattern="/home/ubuntu/videoConference/logs/$${date:yyyy-MM-dd}/allOut-%d{yyyy-MM-dd}-%i.log.gz">
             <Filters>
                 <!--控制台如果只输出info及以上级别的信息(onMatch),level=info,其他的直接拒绝(onMismatch)-->
                 <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>

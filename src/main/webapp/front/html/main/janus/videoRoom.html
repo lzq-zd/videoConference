@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title id="window-title">会议房间</title>
+<link rel="shortcut icon" type="images/x-icon"  href="/front/img/main/janus/meeting.png" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/7.4.0/adapter.min.js" ></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js" ></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<script type="text/javascript" src="/front/js/main/Janus/janus.js"></script>
+<script type="text/javascript" src="/front/js/main/Janus/videoroom.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cerulean/bootstrap.min.css" type="text/css"/>
+<link rel="stylesheet" href="/front/css/main/Janus/videoRoom.css" type="text/css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css"/>
+</head>
+<body>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="page-header">
+				<h1>WebRTC视频会议
+					<button class="btn btn-default" autocomplete="off" id="start">开启视频</button>
+				</h1>
+			</div>
+			<div class="container hide" id="videojoin">
+				<div class="row">
+					<span class="label label-info" id="you"></span>
+					<div class="col-md-12" id="controls">
+						<div class="input-group margin-bottom-md hide" id="registernow">
+							<span class="input-group-addon">@</span>
+							<input autocomplete="off" class="form-control" type="text" placeholder="输入一个名称，用于在会议房间中显示" id="username" onkeypress="return checkEnter(this, event);" />
+							<span class="input-group-btn">
+								<button class="btn btn-success" autocomplete="off" id="register">进入房间</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container hide" id="videos">
+				<div class="meetingMsg">
+					<h3>会议房间信息</h3>
+					<h4>网站地址：http://www.lzq-zd.top:8080/mainPage/index</h4>
+					<!--发起者-->
+					<h4 id="meetinPresider"></h4>
+					<!--备注/描述-->
+					<h4 id="meetinRemark"></h4>
+					<!--房间号-->
+					<h4 id="meetinRoomId"></h4>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">我的<span class="label label-primary hide" id="publisher"></span>
+									<div class="btn-group btn-group-xs pull-right hide">
+										<div class="btn-group btn-group-xs">
+											<button id="bitrateset" autocomplete="off" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+												调整带宽<span class="caret"></span>
+											</button>
+											<ul id="bitrate" class="dropdown-menu" role="menu">
+												<li><a href="#" id="0">不限制</a></li>
+												<li><a href="#" id="128">上限 128kbit</a></li>
+												<li><a href="#" id="256">上限 256kbit</a></li>
+												<li><a href="#" id="512">上限 512kbit</a></li>
+												<li><a href="#" id="1024">上限 1mbit</a></li>
+												<li><a href="#" id="1500">上限 1.5mbit</a></li>
+												<li><a href="#" id="2000">上限 2mbit</a></li>
+											</ul>
+										</div>
+									</div>
+								</h3>
+							</div>
+							<div class="panel-body" id="videolocal"></div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">远程 <span class="label label-info hide" id="remote1"></span></h3>
+							</div>
+							<div class="panel-body relative" id="videoremote1"></div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">远程 <span class="label label-info hide" id="remote2"></span></h3>
+							</div>
+							<div class="panel-body relative" id="videoremote2"></div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">远程 <span class="label label-info hide" id="remote3"></span></h3>
+							</div>
+							<div class="panel-body relative" id="videoremote3"></div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">远程 <span class="label label-info hide" id="remote4"></span></h3>
+							</div>
+							<div class="panel-body relative" id="videoremote4"></div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">远程 <span class="label label-info hide" id="remote5"></span></h3>
+							</div>
+							<div class="panel-body relative" id="videoremote5"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<hr>
+	<div class="footer">
+	</div>
+</div>
+
+</body>
+</html>

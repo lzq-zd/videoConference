@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lzq.dao.main.janus.MeetingDao">
+    <select id="getUnFlagMetings" resultType="com.lzq.bean.meeting.Meeting">
+        select * from meeting
+    </select>
+
+    <update id="updateMeeting">
+        update meeting
+        <set>
+            <if test="meeting.presider != null">presider = #{meeting.presider},</if>
+            <if test="meeting.remark != null">remark = #{meeting.remark},</if>
+            <if test="meeting.dateTime != null">dateTime = #{meeting.dateTime},</if>
+            <if test="meeting.flag != null">flag = #{meeting.flag},</if>
+        </set>
+        where id=#{meeting.id}
+    </update>
+</mapper>

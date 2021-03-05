@@ -18,4 +18,9 @@ public class MainPageDispose {
         return "main/main";
     }
 
+    //会议房间
+    @RequestMapping(value = "/videoRoom")
+    public String videoRoom() {
+        return "main/janus/videoRoom";
+    }
 }
