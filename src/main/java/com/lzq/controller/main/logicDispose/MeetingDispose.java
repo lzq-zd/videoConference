@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.RandomAccessFile;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -125,12 +122,12 @@ public class MeetingDispose {
     }
 
     //离开房间事件处理
-    @RequestMapping(value = "/leaveRoom")
-    public void leaveRoom(HttpSession session,String roomId) {
-        Map<String,Object> hashmap = new HashMap<>();
+    @RequestMapping(value = "/leaveRoom",produces = {"text/plain;charset=UTF-8"})
+    @ResponseBody
+    public String leaveRoom(HttpSession session,String roomId) {
         User user = (User) session.getAttribute("user");
         if(user == null) {
-            return;
+            return "服务端无法获取你的会话信息，请验证是否已经登录或登录已过期";
         }
         String s = redisTemplate.opsForValue().get(roomId);
         int x = Integer.valueOf(s)-1; //走一个
@@ -141,8 +138,10 @@ public class MeetingDispose {
             meeting.setFlag(0);
             meetingService.updateMeeting(meeting);
             logger.info("销毁房间"+roomId);
+            return "ok";
         }else {
             redisTemplate.opsForValue().set(roomId, String.valueOf(x));
+            return "数据库修改失败";
         }
     }
 

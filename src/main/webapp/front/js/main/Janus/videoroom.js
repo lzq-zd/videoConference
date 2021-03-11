@@ -190,12 +190,30 @@ $(document).ready(function() {
                                                 for (var i = 1; i < msg["publishers"].length; i++) {
                                                     if (feeds[i] && feeds[i].rfid == leaving) {
                                                         remoteFeed = feeds[i];
-                                                        break;}}if (remoteFeed != null) {
+                                                        break;
+                                                    }
+                                                }
+                                                if (remoteFeed != null) {
                                                     Janus.debug("Feed " + remoteFeed.rfid + " (" + remoteFeed.rfdisplay + ") 已经离开房间了吗");
                                                     $('#remote' + remoteFeed.rfindex).empty().hide();
                                                     $('#videoremote' + remoteFeed.rfindex).empty();
                                                     feeds[remoteFeed.rfindex] = null;
-                                                    remoteFeed.detach();}} else if (msg["unpublished"]) {
+                                                    remoteFeed.detach();
+                                                    $.post( {
+                                                        url:'/meeting/leaveRoom',
+                                                        data:{
+                                                            "roomId":myroom
+                                                        },
+                                                        success:function (data) {
+                                                            if(data === 'ok') {
+                                                                console.log("退出成功");
+                                                            }else {
+                                                                console.log("退出失败"+data);
+                                                            }
+                                                        }
+                                                    });
+                                                }
+                                            } else if (msg["unpublished"]) {
                                                 // One of the publishers has unpublished?
                                                 var unpublished = msg["unpublished"];
                                                 Janus.log("Publisher left: " + unpublished);
@@ -234,8 +252,8 @@ $(document).ready(function() {
                                             $('#myvideo').hide();
                                             $('#videolocal').append(
                                                 '<div class="no-video-container">' +
-                                                '<i class="fa fa-video-camera fa-5 no-video-icon" style="height: 100%;"></i>' +
-                                                '<span class="no-video-text" style="font-size: 16px;">Video rejected, no webcam</span>' +
+                                                '<i class="fa fa-video-camera fa-5 no-video-icon" style="width:100%;height: 100%;"></i>' +
+                                                '<span class="no-video-text" style="font-size: 16px;">视频被拒绝，没有摄像头</span>' +
                                                 '</div>');}}},
                                 onlocalstream: function (stream) {
                                     Janus.debug(" ::: Got a local stream :::", stream);
@@ -249,7 +267,10 @@ $(document).ready(function() {
                                         $('#mute').click(toggleMute);
                                         // Add an 'unpublish' button
                                         $('#videolocal').append('<button class="btn btn-warning btn-xs" id="unpublish" style="position: absolute; bottom: 0px; right: 0px; margin: 15px;">停止上传</button>');
-                                        $('#unpublish').click(unpublishOwnFeed);}$('#publisher').removeClass('hide').html(myusername).show();
+                                        $('#unpublish').click(unpublishOwnFeed);
+                                    }
+                                    $('#publisher').removeClass('hide').html(myusername).show();
+
                                     Janus.attachMediaStream($('#myvideo').get(0), stream);
                                     $("#myvideo").get(0).muted = "muted";
                                     if (sfutest.webrtcStuff.pc.iceConnectionState !== "completed" &&
